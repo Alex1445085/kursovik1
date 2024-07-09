@@ -33,7 +33,7 @@ public class Main {
         salaryTotalSum = getSalaryTotalSum(emploee);
         System.out.printf("Всего затраты на з/п - %.2f\n", salaryTotalSum);
 
-        salaryMedianna = getSalaryMedianna(salaryTotalSum,emploee.length);
+        salaryMedianna = getSalaryMedianna(emploee);
         System.out.printf("Средняя з/п - %.2f\n", salaryMedianna);
 
         getFullListOfName(emploee);
@@ -70,8 +70,12 @@ public class Main {
         }
         return totalSum;
     }
-    public static float getSalaryMedianna(float totalSalary, int emploeesNum) {
-        return totalSalary/emploeesNum;
+    public static float getSalaryMedianna(EmploeeBook[] temp) {
+        int totalSum = temp[0].getSalary();
+        for (int i = 1; i < temp.length; i++) {
+            totalSum += temp[i].getSalary();
+        }
+        return totalSum/temp.length;
     }
     public static void getId(EmploeeBook[] emploees) {
         for (int i = 0; i < 10; i++) {
