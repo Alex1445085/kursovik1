@@ -2,9 +2,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
-    // EmpoleeBook [] emploee = new EmpoleeBook[10];
     public static void main(String[] args) {
-
         EmploeeBook[] emploee = new EmploeeBook[10];
         emploee[0] = new EmploeeBook("Ivanov Ivan Ivanovich", "1", 86811);
         emploee[1] = new EmploeeBook("Petrov Petr Petrovich", "2", 80000);
@@ -17,77 +15,77 @@ public class Main {
         emploee[8] = new EmploeeBook("Vasin Alex Ivanovich", "2", 99800);
         emploee[9] = new EmploeeBook("Vasin Alex Petrovich", "1", 88500);
 
-        List<String> emploees = new ArrayList<>();
-        List<String> departments = new ArrayList<>();
-        int[] salar = new int[emploee.length];
-
         int salaryMinId = 0, salaryMaxId = 0;
-        float salaryTotalSum = 0;
+        float salaryTotalSum = 0, salaryMedianna;
 
         for (int i = 0; i < emploee.length; i++) {
-            emploees.add(emploee[i].getEmploee());
-            departments.add(emploee[i].getDepartment());
-            salar[i] = emploee[i].getSalary();
-            emploee[i].setCount(i);
-        }
+            emploee[i].setCount(1);
+      }
 
-        salaryMinId = getMinSalaryId(salar);
+        salaryMinId = getMinSalaryId(emploee);
         System.out.print("Сотрудник - " + emploee[salaryMinId].getEmploee());
         System.out.println(" c наименьшей з/п - " + emploee[salaryMinId].getSalary());
 
-        salaryMaxId = getMaxSalaryId(salar);
+        salaryMaxId = getMaxSalaryId(emploee);
         System.out.print("Сотрудник - " + emploee[salaryMaxId].getEmploee());
         System.out.println(" c наибольшей з/п - " + emploee[salaryMaxId].getSalary());
 
-        salaryTotalSum = getSalaryTotalSum(salar);
-        System.out.printf("Всего затраты на з/п - %.2f\n",salaryTotalSum);
-        System.out.printf("Средняя з/п - %.2f\n",salaryTotalSum/emploee.length);
+        salaryTotalSum = getSalaryTotalSum(emploee);
+        System.out.printf("Всего затраты на з/п - %.2f\n", salaryTotalSum);
 
-        getFullListOfName(emploees, departments, salar);
-        getListOfName(emploees);
-        for (int i = 0; i < emploee.length; i++) {
-            System.out.print(emploee[i].getId() + " ");
-        }
+        salaryMedianna = getSalaryMedianna(salaryTotalSum,emploee.length);
+        System.out.printf("Средняя з/п - %.2f\n", salaryMedianna);
+
+        getFullListOfName(emploee);
+        getListOfName(emploee);
+        getId(emploee);
     }
 
-    public static int getMinSalaryId(int[] temp) {
-        int res = temp[0];
+    public static int getMinSalaryId(EmploeeBook[] temp) {
+        int res = temp[0].getSalary();
         int salaryMinId = 0;
         for (int i = 1; i < temp.length; i ++) {
-            if (res > temp[i]) {
-                res = temp[i];
+            if (res > temp[i].getSalary()) {
+                res = temp[i].getSalary();
                 salaryMinId = i;
             }
         }
         return salaryMinId;
     }
-    public static int getMaxSalaryId(int[] temp) {
-        int res = temp[0];
+    public static int getMaxSalaryId(EmploeeBook[] temp) {
+        int res = temp[0].getSalary();
         int salaryMaxId = 0;
         for (int i = 1; i < temp.length; i ++) {
-            if (res < temp[i]) {
-                res = temp[i];
+            if (res < temp[i].getSalary()) {
+                res = temp[i].getSalary();
                 salaryMaxId = i;
             }
         }
         return salaryMaxId;
     }
-    public static int getSalaryTotalSum(int[] temp) {
-        int totalSum = temp[0];
+    public static int getSalaryTotalSum(EmploeeBook[] temp) {
+        int totalSum = temp[0].getSalary();
         for (int i = 1; i < temp.length; i++) {
-            totalSum += temp[i];
+            totalSum += temp[i].getSalary();
         }
         return totalSum;
     }
-    public static void getFullListOfName(List<String> name, List<String> dep, int[] temp) {
+    public static float getSalaryMedianna(float totalSalary, int emploeesNum) {
+        return totalSalary/emploeesNum;
+    }
+    public static void getId(EmploeeBook[] emploees) {
+        for (int i = 0; i < 10; i++) {
+            System.out.print(emploees[i].getId() + " ");
+        }
+    }
+    public static void getFullListOfName(EmploeeBook[] temp) {
         for (int i = 0; i < temp.length; i++) {
-            System.out.println("Сотрудник - "  + name.get(i) + ", отдел - " + dep.get(i) + ", з/п - " + temp[i]);
+            System.out.println(temp[i]);
         }
     }
-    public static void getListOfName(List<String> name) {
-        for (int i = 0; i < name.size(); i++) {
-            System.out.println(name.get(i));
+    public static void getListOfName(EmploeeBook[] temp) {
+        for (int i = 0; i < temp.length; i++) {
+            System.out.println(temp[i].getEmploee());
         }
     }
-
 }

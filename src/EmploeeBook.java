@@ -5,15 +5,16 @@ public class EmploeeBook {
     private String emploee;
     private String department;
     private int salary;
-    public int count = 0;
-    private int id = 0;
-
+    private static int count = 0;
+    private int id;
 
     public EmploeeBook(String emploee, String department, int salary) {
         this.emploee = emploee;
         this.department = department;
         this.salary = salary;
-        this.id = count++;
+        this.id = 0;
+        this.count = 0;
+
     }
 
     public String getEmploee() {
@@ -37,8 +38,9 @@ public class EmploeeBook {
     public void setSalary(int salaryNew) {
         this.salary = salaryNew;
     }
-    public void setCount(int count) {
+    public void setCount(int i) {
         setId(count);
+        count += i;
     }
 
     @Override
