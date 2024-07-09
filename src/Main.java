@@ -18,10 +18,6 @@ public class Main {
         int salaryMinId = 0, salaryMaxId = 0;
         float salaryTotalSum = 0, salaryMedianna;
 
-        for (int i = 0; i < emploee.length; i++) {
-            emploee[i].setCount(1);
-      }
-
         salaryMinId = getMinSalaryId(emploee);
         System.out.print("Сотрудник - " + emploee[salaryMinId].getEmploee());
         System.out.println(" c наименьшей з/п - " + emploee[salaryMinId].getSalary());
@@ -63,7 +59,7 @@ public class Main {
         }
         return salaryMaxId;
     }
-    public static int getSalaryTotalSum(EmploeeBook[] temp) {
+    public static float getSalaryTotalSum(EmploeeBook[] temp) {
         int totalSum = temp[0].getSalary();
         for (int i = 1; i < temp.length; i++) {
             totalSum += temp[i].getSalary();
@@ -71,7 +67,7 @@ public class Main {
         return totalSum;
     }
     public static float getSalaryMedianna(EmploeeBook[] temp) {
-        int totalSum = temp[0].getSalary();
+        float totalSum = temp[0].getSalary();
         for (int i = 1; i < temp.length; i++) {
             totalSum += temp[i].getSalary();
         }
