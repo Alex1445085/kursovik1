@@ -36,7 +36,6 @@ public class Main {
         getListOfName(emploee);
         getId(emploee);
     }
-
     public static int getMinSalaryId(EmploeeBook[] temp) {
         int res = temp[0].getSalary();
         int salaryMinId = 0;

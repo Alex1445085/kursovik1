@@ -30,9 +30,9 @@ public class EmploeeBook {
     public int getId() {
         return this.id;
     }
-    private void setId(int i) {
-        this.id = i;
-    }
+   // private void setId(int i) {
+   //     this.id = i;
+   // }
     public void setDepartment(String departmentNumber) {
         this.department = departmentNumber;
     }
